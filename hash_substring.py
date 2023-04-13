@@ -10,9 +10,8 @@ def read_input():
         text = input()
 
     elif "F" in command:
-        fileName = input()
+        fileName = "06"
 
-        
         filePath = "./tests/" + fileName
         with open(filePath, mode="r") as fail:
             pattern = fail.readline()
