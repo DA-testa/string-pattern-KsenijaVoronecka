@@ -52,8 +52,6 @@ def get_hash(str):
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
     global B, Q
-    print("pattern =", pattern)
-    print("text =", text)
     pattern_length = len(pattern)
     text_length = len(text)
     
@@ -74,7 +72,6 @@ def get_occurrences(pattern, text):
                 text_hash = text_hash + Q
 
     # and return an iterable variable
-    print(answer)
     return answer
 
 
