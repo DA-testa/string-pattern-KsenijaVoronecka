@@ -54,6 +54,10 @@ def get_occurrences(pattern, text):
     global B, Q
     pattern_length = len(pattern)
     text_length = len(text)
+
+    multiplier = 1
+    for i in range(1, pattern_length):
+        multiplier = (multiplier * B) % Q
     
     pattern_hash = get_hash(pattern)
     text_hash = get_hash(text[:pattern_length])
@@ -61,12 +65,12 @@ def get_occurrences(pattern, text):
     answer = []
 
     for i in range(text_length - pattern_length + 1):
-
+        # print("text_hash = ", text_hash, print("text = ", text[i : i+pattern_length]))
         if pattern_hash == text_hash and text[i : i+pattern_length] == pattern:
             answer.append(i)
         
         if i < text_length - pattern_length:
-            text_hash = ((text_hash - ord(text[i]) * B * B) * B + ord(text[i + pattern_length])) % Q
+            text_hash = ((text_hash - ord(text[i]) * multiplier) * B + ord(text[i + pattern_length])) % Q
 
             if text_hash < 0:
                 text_hash = text_hash + Q
